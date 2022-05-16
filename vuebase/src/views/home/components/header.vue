@@ -2,7 +2,7 @@
  * @Author: tfs\chenchen chenchen@cabrtech.com
  * @Date: 2022-05-13 14:31:32
  * @LastEditors: tfs\chenchen chenchen@cabrtech.com
- * @LastEditTime: 2022-05-13 17:16:27
+ * @LastEditTime: 2022-05-16 10:53:50
  * @FilePath: \vuebase\src\views\home\components\header.vue
  * @Description: 顶部导航栏
  * 
@@ -26,7 +26,7 @@ export default {
     },
     data(){
         return {
-            buttons:["案例","文章","收藏","关于"]
+            buttons:["案例","代码片段","文章","收藏","关于"]
         }
     },
     methods:{

@@ -2,7 +2,7 @@
  * @Author: tfs\chenchen chenchen@cabrtech.com
  * @Date: 2022-05-12 11:29:30
  * @LastEditors: tfs\chenchen chenchen@cabrtech.com
- * @LastEditTime: 2022-05-13 17:29:07
+ * @LastEditTime: 2022-05-16 10:14:08
  * @FilePath: \vuebase\src\views\home\index.vue
  * @Description: 
  * 
@@ -14,13 +14,18 @@
     <a-row>
       <Header></Header>
     </a-row>
+    <a-row style="margin-top:200px;">
+      <center></center>
+    </a-row>
   </div>
 </template>
 <script>
 import Header from "./components/header.vue";
+import Center from "./components/center.vue";
 export default {
   components: {
     Header,
+    Center
   },
 };
 </script>
@@ -37,7 +42,7 @@ export default {
     // width: 100%;
     // height: 100%;
     background-image: url("../../assets/home/beijing.jpg");
-    background-size: auto;
+    background-size: 100% 100%;
   }
 }
 </style>
