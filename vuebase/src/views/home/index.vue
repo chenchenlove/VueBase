@@ -2,7 +2,7 @@
  * @Author: tfs\chenchen chenchen@cabrtech.com
  * @Date: 2022-05-12 11:29:30
  * @LastEditors: tfs\chenchen chenchen@cabrtech.com
- * @LastEditTime: 2022-05-16 10:14:08
+ * @LastEditTime: 2022-05-18 10:06:42
  * @FilePath: \vuebase\src\views\home\index.vue
  * @Description: 
  * 
@@ -14,8 +14,8 @@
     <a-row>
       <Header></Header>
     </a-row>
-    <a-row style="margin-top:200px;">
-      <center></center>
+    <a-row style="margin-top: 200px">
+      <center :cardData="cardData" @clickCard="clickCard"></center>
     </a-row>
   </div>
 </template>
@@ -25,7 +25,27 @@ import Center from "./components/center.vue";
 export default {
   components: {
     Header,
-    Center
+    Center,
+  },
+  data() {
+    return {
+      cardData: [
+        {
+          src: require("../../assets/home/map_t.png"),
+          title: "echart map",
+          description: "三级地图案例",
+        },
+      ],
+    };
+  },
+  methods: {
+    clickCard(index) {
+      let routeData = this.$router.resolve({
+        path: "/map",
+      });
+      //必要操作，否则不会打开新页面
+      window.open(routeData.href, "_blank");
+    },
   },
 };
 </script>

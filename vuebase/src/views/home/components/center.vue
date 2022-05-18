@@ -2,7 +2,7 @@
  * @Author: tfs\chenchen chenchen@cabrtech.com
  * @Date: 2022-05-13 16:19:24
  * @LastEditors: tfs\chenchen chenchen@cabrtech.com
- * @LastEditTime: 2022-05-16 10:46:57
+ * @LastEditTime: 2022-05-18 09:57:25
  * @FilePath: \vuebase\src\views\home\components\center.vue
  * @Description: 
  * 
@@ -11,9 +11,9 @@
 <template>
   <div class="home_center_content">
     <div class="card_content">
-      <a-card hoverable class="card_style">
-        <img slot="cover" alt="example" src="../../../assets/home/map_t.png" />
-        <a-card-meta title="echarts map" description="三级地图案例">
+      <a-card v-for="(item,index) in cardData" :key="index" hoverable class="card_style" @click="clickCard(index)">
+        <img slot="cover" alt="example" :src=item.src />
+        <a-card-meta :title=item.title :description=item.description>
           <!-- <a-avatar
             slot="avatar"
             src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
@@ -24,7 +24,21 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+    props:{
+        cardData:{
+            type:Array,
+            default(){
+                return []
+            }
+        }
+    },
+    methods:{
+        clickCard(index){
+            this.$emit("clickCard",index);
+        }
+    }
+};
 </script>
 <style lang="scss" scoped>
 .home_center_content {
