@@ -2,7 +2,7 @@
  * @Author: tfs\chenchen chenchen@cabrtech.com
  * @Date: 2022-05-13 14:31:32
  * @LastEditors: tfs\chenchen chenchen@cabrtech.com
- * @LastEditTime: 2022-05-16 10:53:50
+ * @LastEditTime: 2022-05-19 16:46:01
  * @FilePath: \vuebase\src\views\home\components\header.vue
  * @Description: 顶部导航栏
  * 
@@ -38,8 +38,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 .header_content{
-    background-image: url("../../../assets/home/star1920.gif");
-    background-size: auto;
+    // background-image: url("../../../assets/home/star1920.gif");
+    // background-size: auto;
     width: 100%;
     height: 80px;
     .row_class{
