@@ -2,7 +2,7 @@
  * @Author: tfs\chenchen chenchen@cabrtech.com
  * @Date: 2022-05-18 10:34:12
  * @LastEditors: tfs\chenchen chenchen@cabrtech.com
- * @LastEditTime: 2022-05-19 16:21:21
+ * @LastEditTime: 2022-05-20 11:27:13
  * @FilePath: \vuebase\src\views\map\components\map.vue
  * @Description: http://datav.aliyun.com/portal/school/atlas/area_selector  json资源参考网站
  * 
@@ -40,29 +40,29 @@ export default {
           },
           zlevel: -11,
           regions: [
-            {
-              name: "湖北省", //与json对应的省份名称
-              itemStyle: {
-                color: "#ffffff",
-                normal: {
-                  borderColor: "#79FFFA",
-                  borderWidth: 0.8,
-                  areaColor: "#ffffff",
-                },
-                emphasis: {
-                  textStyle: {
-                    color: "#fff",
-                    fontSize: 12,
-                    backgroundColor: "transparent",
-                  },
-                  areaColor: "#ffffff",
-                },
-              },
-              label: {
-                color: "#ffffff", //字体颜色
-                show: true,
-              },
-            },
+            // {
+            //   name: "湖北省", //与json对应的省份名称
+            //   itemStyle: {
+            //     color: "#ffffff",
+            //     normal: {
+            //       borderColor: "#79FFFA",
+            //       borderWidth: 0.8,
+            //       areaColor: "#ffffff",
+            //     },
+            //     emphasis: {
+            //       textStyle: {
+            //         color: "#fff",
+            //         fontSize: 12,
+            //         backgroundColor: "transparent",
+            //       },
+            //       areaColor: "#ffffff",
+            //     },
+            //   },
+            //   label: {
+            //     color: "#ffffff", //字体颜色
+            //     show: true,
+            //   },
+            // },
           ],
         },
         series: [
@@ -172,15 +172,15 @@ export default {
             ],
           },
           {
-            name: "湖南省",
+            name: "洋湖片区连塘学校项目",
             type: "scatter",
             coordinateSystem: "geo",
-            data: [{ name: "冀北", value: [116.46, 39.92] }],
+            data: [{ name: "洋湖片区连塘学校项目", value: [112.9172, 28.11432] }],
             symbol:
               "path://m463.27193,186.73462l27.50175,0l8.49825,-26.12654l8.49826,26.12654l27.50174,0l-22.24934,16.14691l8.49869,26.12654l-22.24935,-16.14735l-22.24934,16.14735l8.49869,-26.12654l-22.24935,-16.14691z",
-            symbolSize: 15, // 锚点大小
+            symbolSize: 20, // 锚点大小
             tooltip: {
-              show: false,
+              show: true,
             },
             itemStyle: {
               color: "red",
@@ -191,12 +191,12 @@ export default {
             name: "",
             type: "scatter",
             coordinateSystem: "geo",
-            data: [{ name: "北戴河区", value: [119.29, 39.54] }],
+            data: [{ name: "保利中环广场", value: [114.033508, 28.213015] }],
             symbol:
               "path://m463.27193,186.73462l27.50175,0l8.49825,-26.12654l8.49826,26.12654l27.50174,0l-22.24934,16.14691l8.49869,26.12654l-22.24935,-16.14735l-22.24934,16.14735l8.49869,-26.12654l-22.24935,-16.14691z",
-            symbolSize: 15, // 锚点大小
+            symbolSize: 20, // 锚点大小
             tooltip: {
-              show: false,
+              show: true,
             },
             itemStyle: {
               color: "red",
