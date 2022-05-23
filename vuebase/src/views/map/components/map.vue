@@ -1,8 +1,8 @@
 <!--
  * @Author: tfs\chenchen chenchen@cabrtech.com
  * @Date: 2022-05-18 10:34:12
- * @LastEditors: tfs\chenchen chenchen@cabrtech.com
- * @LastEditTime: 2022-05-20 11:27:13
+ * @LastEditors: chenchenlove 726759161@qq.com
+ * @LastEditTime: 2022-05-23 14:54:09
  * @FilePath: \vuebase\src\views\map\components\map.vue
  * @Description: http://datav.aliyun.com/portal/school/atlas/area_selector  json资源参考网站
  * 
@@ -34,36 +34,13 @@ export default {
         geo: {
           show: false,
           map: "china",
+          zoom:1.2,//geo中zoom要和series中的一样大小，否则，散点的位置会发生便宜，毕竟散点是根据geo来的，地图的统一渐变色是series中来的
           viewControl: {
             distance: 120,
             alpha: 65,
           },
           zlevel: -11,
-          regions: [
-            // {
-            //   name: "湖北省", //与json对应的省份名称
-            //   itemStyle: {
-            //     color: "#ffffff",
-            //     normal: {
-            //       borderColor: "#79FFFA",
-            //       borderWidth: 0.8,
-            //       areaColor: "#ffffff",
-            //     },
-            //     emphasis: {
-            //       textStyle: {
-            //         color: "#fff",
-            //         fontSize: 12,
-            //         backgroundColor: "transparent",
-            //       },
-            //       areaColor: "#ffffff",
-            //     },
-            //   },
-            //   label: {
-            //     color: "#ffffff", //字体颜色
-            //     show: true,
-            //   },
-            // },
-          ],
+          regions: [],
         },
         series: [
           {
@@ -142,40 +119,42 @@ export default {
               },
             },
             data: [
-              {
-                name: "湖北省",
-                itemStyle: {
-                  normal: {
-                    color: "#EEF0F2",
-                    label: {
-                      show: true,
-                      textStyle: {
-                        color: "#fff",
-                        fontSize: 15,
-                      },
-                    },
-                  },
-                  emphasis: {
-                    // 也是选中样式
-                    borderWidth: 5,
-                    borderColor: "#EEF0F2",
-                    areaColor: "#EEF0F2",
-                    label: {
-                      show: true,
-                      textStyle: {
-                        color: "blue",
-                      },
-                    },
-                  },
-                },
-              },
+              // {
+              //   name: "湖北省",
+              //   itemStyle: {
+              //     normal: {
+              //       color: "#EEF0F2",
+              //       label: {
+              //         show: true,
+              //         textStyle: {
+              //           color: "#fff",
+              //           fontSize: 15,
+              //         },
+              //       },
+              //     },
+              //     emphasis: {
+              //       // 也是选中样式
+              //       borderWidth: 5,
+              //       borderColor: "#EEF0F2",
+              //       areaColor: "#EEF0F2",
+              //       label: {
+              //         show: true,
+              //         textStyle: {
+              //           color: "blue",
+              //         },
+              //       },
+              //     },
+              //   },
+              // },
             ],
           },
           {
             name: "洋湖片区连塘学校项目",
             type: "scatter",
             coordinateSystem: "geo",
-            data: [{ name: "洋湖片区连塘学校项目", value: [112.9172, 28.11432] }],
+            data: [
+              { name: "洋湖片区连塘学校项目", value: [112.9172, 28.11432] },
+            ],
             symbol:
               "path://m463.27193,186.73462l27.50175,0l8.49825,-26.12654l8.49826,26.12654l27.50174,0l-22.24934,16.14691l8.49869,26.12654l-22.24935,-16.14735l-22.24934,16.14735l8.49869,-26.12654l-22.24935,-16.14691z",
             symbolSize: 20, // 锚点大小
@@ -202,19 +181,19 @@ export default {
               color: "red",
             },
             zlevel: 3,
-            label: {
-              show: true,
-              position: "right",
-              textStyle: {
-                color: "#fff",
-                fontSize: 12,
-                backgroundColor: "transparent",
-              },
-              formatter: function (params) {
-                //标签内容
-                return params.name;
-              },
-            },
+            // label: {
+            //   show: true,
+            //   position: "right",
+            //   textStyle: {
+            //     color: "#fff",
+            //     fontSize: 12,
+            //     backgroundColor: "transparent",
+            //   },
+            //   formatter: function (params) {
+            //     //标签内容
+            //     return params.name;
+            //   },
+            // },
           },
         ],
       },
@@ -229,6 +208,29 @@ export default {
       this.chart = this.$echarts.init(document.getElementById("map"));
       this.$echarts.registerMap("china", China);
       this.chart.setOption(this.mapOptions, true);
+      this.chart.on("mouseover", (params) => {
+        //鼠标在地图上移动
+        console.log("params mouseover", params);
+      });
+      this.chart.on("mouseout", (params) => {
+        //鼠标移动到地图外
+        console.log("params mouseout", params);
+      });
+      this.chart.on("click", (params) => {
+        //点击地图
+        console.log("--click:", params);
+        if (params.data) {//如果data不会空说明是点击散点
+
+        } else {
+           import(`../map_json/china/${params.name}.json`).then((res) => {
+            console.log("xxxxxxxxx", res.default);
+            this.$echarts.registerMap("province", res.default); 
+            this.mapOptions.series[0].map = "province";//设置地图的map属性  province china
+            this.mapOptions.geo.map = "province";//一定要设置对应的属性  province china  不然散点不会随着地图位置发生变化
+            this.chart.setOption(this.mapOptions,true);
+           });
+        }
+      });
     },
   },
   beforeDestroy() {
